@@ -20,8 +20,7 @@
 - [ ] test replacing poetry with uv
 - [ ] iframe grafana oss into angular dashboard
 - [ ] fix github actions to pull secrets from Google Secret Manager
-- [ ] switch to bun or another js bundler that is not yarn
-
+- [x] switch to bun or another js bundler that is not yarn
 
 ## Usage
 
@@ -32,6 +31,9 @@ Clone this repo as a template, then pull in future updates of to your own repo
 - `git merge template/master --strategy-option ours --squash`
 - `git pull https://github.com/Zaffer/fast-stack master --ff --allow-unrelated-histories`
 
+## Package Management
+
+This project uses **bun** with workspaces to manage all JavaScript/TypeScript packages from the root directory. Install dependencies with `bun install` and use workspace commands like `bun run build:web-admin` to work with individual packages.
 
 # TEMPLATES
 
@@ -149,42 +151,14 @@ Microsoft Playwright
     - `poetry install`
     - open a python file to select the python interpretor for you environment
 
+1. Bun
+    - Install instructions:
+      - Windows: `powershell -c "irm bun.sh/install.ps1|iex"`
+      - MacOS/Linux/WSL: `curl -fsSL https://bun.com/install | bash`
+    - The project uses bun workspaces to manage all dependencies from the root folder
+    - Instead of `yarn install && yarn build`, use `bun install && bun run build:all`
 
-1. Node
-   - install fnm ([https://github.com/nvm-sh/nvm](https://github.com/Schniz/fnm))
-     - `curl -fsSL https://fnm.vercel.app/install | bash`
-     - `source ~/.bashrc`
-     - `fnm use --install-if-missing 22`
-     - `node -v`
-     - `npm -v`
-
-   - install global Angular CLI's:
-     - `npm install -g @angular/cli`
-     - `npm install -g firebase-tools`
-     - `npm install -g @ionic/cli`
-
-
-1. Yarn
-    - Install Yarn: https://yarnpkg.com/getting-started/install
-      - `corepack enable`
-
-    - Project setup:
-      - cd into the app folder
-      - `yarn set version stable`
-      - `yarn install`
-
-    - Angular compatability:
-      - add `nodeLinker: node-modules` to .yarnrc.yml
-
-
-1. Angular
-
-    - Project Setup:
-      - create new project using CLI: `ng new my-project --package-manager yarn`
-      - Set yarn as you package manager globally: `ng config -g cli.packageManager yarn`
-
-    
-1. bashrc
+    1. bashrc
 
     - `nano ~/.bashrc`
     - should look like this at the end of the file

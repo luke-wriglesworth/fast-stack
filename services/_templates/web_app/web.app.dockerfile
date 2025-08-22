@@ -1,20 +1,16 @@
-FROM node:lts-alpine as base
+FROM oven/bun:alpine as base
 
-ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
-
-ENV PATH=$PATH:/home/node/.npm-global/bin
-
-RUN npm install -g @ionic/cli
-RUN npm install -g @angular/cli
-RUN npm install -g firebase-tools
+# Install global tools via bun
+RUN bun install -g @ionic/cli
+RUN bun install -g @angular/cli  
+RUN bun install -g firebase-tools
 
 WORKDIR /home/node/app
 
-COPY --chown=node ./src .
+COPY --chown=bun ./src .
 
-RUN yarn set version stable
-RUN yarn install
+RUN bun install
 
-USER node
+USER bun
 
-CMD yarn start --host 0.0.0.0
+CMD bun start --host 0.0.0.0

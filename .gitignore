@@ -28,3 +28,4 @@ htmlcov/
 
 # Firebase
 .firebase
+node_modules/*

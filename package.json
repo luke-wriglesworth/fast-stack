@@ -1,0 +1,23 @@
+{
+  "name": "fast-stack",
+  "private": true,
+  "workspaces": [
+    "services/_templates/web_admin/frontend",
+    "services/_templates/web_app/src",
+    "services/_templates/web_app/src/functions"
+  ],
+  "scripts": {
+    "install:all": "bun install",
+    "build:web-admin": "bun run --filter web-admin build",
+    "build:web-app": "bun run --filter fast-stack-web-app build",
+    "build:functions": "bun run --filter functions build",
+    "build:all": "bun run build:web-admin && bun run build:web-app && bun run build:functions",
+    "start:web-admin": "bun run --filter web-admin start",
+    "start:web-app": "bun run --filter fast-stack-web-app start",
+    "dev:web-admin": "bun run --filter web-admin start",
+    "dev:web-app": "bun run --filter fast-stack-web-app start",
+    "test:web-admin": "bun run --filter web-admin test",
+    "test:web-app": "bun run --filter fast-stack-web-app test",
+    "lint:web-app": "bun run --filter fast-stack-web-app lint"
+  }
+}

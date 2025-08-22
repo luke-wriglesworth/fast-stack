@@ -2,6 +2,6 @@
 
 set -e
 
-cd services/_templates/web_app/src/functions/
+cd ../../..
 
-yarn build
+bun run build:functions

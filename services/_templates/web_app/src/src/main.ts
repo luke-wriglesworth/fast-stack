@@ -1,4 +1,4 @@
-import { enableProdMode, importProvidersFrom } from '@angular/core';
+import { enableProdMode } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { RouteReuseStrategy, provideRouter } from '@angular/router';
 import {
@@ -26,14 +26,12 @@ bootstrapApplication(AppComponent, {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideIonicAngular(),
     provideRouter(routes),
-    importProvidersFrom([
-      provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-      provideFirestore(() => {
-        const firestore = getFirestore();
-        if (environment.firebaseConfig.useEmulators)
-          connectFirestoreEmulator(firestore, 'localhost', 8080);
-        return firestore;
-      }),
-    ]),
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideFirestore(() => {
+      const firestore = getFirestore();
+      if (environment.firebaseConfig.useEmulators)
+        connectFirestoreEmulator(firestore, 'localhost', 8080);
+      return firestore;
+    }),
   ],
 });

@@ -51,6 +51,7 @@ export const onSummaryCreated = onDocumentCreated(
     // create message
     const data = snapshot.data();
     const messagePayload = {
+      topic: data.company_id,
       notification: {
         title: 'News for ' + data.company_name,
         body: data.text,
@@ -61,7 +62,7 @@ export const onSummaryCreated = onDocumentCreated(
     try {
       const responseSend = await admin
         .messaging()
-        .sendToTopic(data.company_id, messagePayload);
+        .send(messagePayload);
       console.log('successfully sent message to topic:', responseSend);
       return null;
     } catch (error) {

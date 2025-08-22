@@ -4,6 +4,6 @@ set -e
 
 ## you need to run this script if you have added new service worker etc. ##
 
-cd services/_templates/web_app/src/
+cd ../../..
 
-yarn ng build
+bun run build:web-app
